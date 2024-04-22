@@ -1,31 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="../css/main.css" rel="stylesheet">
     <title>Hi!</title>
 </head>
 <body>
 
     <div>
-    <button class='test'>1</button>
-    <button>2</button>
-    <button>3</button>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
     </div>
 
-
-    <div class = "slide-container">
-        <div class = "slide-box">
+    
+    <div style="overflow: hidden; height: 30%;">
+        <div class="slide-container">
+          <div class="slide-box">
             <img src="../imgs/car1.png">
-        </div>
-        <div class = "slide-box">
+          </div>
+          <div class="slide-box">
             <img src="../imgs/car2.png">
-        </div>
-        <div class = "slide-box">
+          </div>
+          <div class="slide-box">
             <img src="../imgs/car3.png">
+          </div>
         </div>
-    </div>
+     </div> 
+
+<script>
+    $('.slide-1').on('click', function() {
+  $('.slide-container').css('transform', 'translateX(0vw)');
+    });
+    $('.slide-2').on('click', function() {
+  $('.slide-container').css('transform', 'translateX(-100vw)');
+    });
+
+    $('.slide-3').on('click', function() {
+  $('.slide-container').css('transform', 'translateX(-200vw)');
+    });
+
+</script>
 
 </body>
 </html>

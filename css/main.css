@@ -1,8 +1,13 @@
-.test {
-    
-    background-color: red;
-}
-
 .slide-container {
+    width: 300vw;
+    height: 30vw;
+    transition: all 1s;
+  }
+  .slide-box {
     width: 100vw;
-}
+    float: left;
+  }
+  .slide-box img {
+    width: 100%;
+  } 
+  
