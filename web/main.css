@@ -21,10 +21,14 @@ span {
     margin-right: 30px;
 }
 
-.input {
-    margin-left: 3%;
+.inputSearch {
+    margin-left: 2%;
 }
 
-/* #list {
+/*  #list {
     display: inline-block;
 } */
+
+img {
+    width:70%;
+}

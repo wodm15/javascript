@@ -21,7 +21,7 @@
     <br>
     <!-- input 기능 -->
     <div>
-        <input class="input" placeholder="검색어 입력">
+        <input class="inputSearch" placeholder="검색어 입력">
     </div>
 
     <div id="list"></div>
@@ -29,32 +29,75 @@
 </body>
 
 <script>
+    fetch('store.json')
+    .then(res => res.json())
+    .then (data=> {
         
-        fetch('store.json')
-        .then(res => res.json())
-        .then (data=> {
-            const products = data.products;   //product 가져오기
-            
-            products.forEach(products => {
-                const createDiv = document.createElement('div');
-               
-                
-                createDiv.textContent = `아이템 : ${products.title}\n브랜드: ${products.brand}`;
+        const products = data.products;   //product 가져오기
+        
+        rendering(products);        //렌더링
 
-                createDiv.style.padding= '20px';
-                createDiv.style.background='white';
-                createDiv.style.border='1px solid black'
-                createDiv.style.float='left';
-                createDiv.style.margin='20px'
-                document.getElementById('list').appendChild(createDiv);
-            });
-            
+        inputFilter(products);     //검색창 기능
 
-        })
-        .catch(error=>{
-            console.error(error);
-        })
+    })
+    .catch(error=>{
+        console.error(error);
+    })
 
+    function rendering(products){
+        products.forEach(products => {
+            const createDiv = document.createElement('div');
+            const info = document.createElement('div');
+            const img = document.createElement('img');
+            const button = document.createElement('button');
 
+            img.src= products.photo;
+
+            info.innerHTML = 
+            `<br>
+            아이템 : ${products.title}
+            <br>
+            브랜드: ${products.brand}
+            <br>
+            가격: ${products.price}
+            <br> `;
+
+            button.textContent='담기'
+
+            createDiv.appendChild(img);
+            createDiv.appendChild(info);
+            createDiv.appendChild(button);
+            createDiv.classList.add('createDivClass');
+            createDiv.style.width= '20%';
+            createDiv.style.padding= '20px';
+            createDiv.style.background='white';
+            createDiv.style.border='1px solid black'
+            createDiv.style.margin='20px'
+            createDiv.style.float='left';
+            document.getElementById('list').appendChild(createDiv);
+        });
+    }
+
+    function inputFilter(products){
+    $('.inputSearch').on('input', function(){
+        const keyword = $(this).val().trim();
+        console.log(keyword);
+        $('.createDivClass').each(function(){
+            const post = $(this).html();
+            if(post.includes(keyword)){
+                $(this).show();
+            }
+            else{
+                $(this).hide();
+            }
+        });
+    });
+}
+          
+    
+
+          
+       
+    
 </script>
 </html>
